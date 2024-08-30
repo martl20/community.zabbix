@@ -128,6 +128,18 @@
   tags:
     - config
 
+- name: "Configure logrotate"
+  ansible.builtin.lineinfile:
+    path: "{{ /etc/logrotate.conf.d/zabbix-agent2 }}"
+    line: '        create 0664 zabbix zabbix'
+    state: absent
+
+- name: "Configure logrotate"
+  ansible.builtin.lineinfile:
+    path: "{{ /etc/logrotate.conf.d/zabbix-agent2 }}"
+    line: '        create 0640 zabbix zabbix'
+    state: present
+    
 - name: "Create include dir zabbix-agent"
   ansible.builtin.file:
     path: "{{ zabbix_agent_include_dir }}"
